@@ -1,0 +1,6 @@
+@FindCep.Api_HostAddress = http://localhost:5293
+
+GET {{FindCep.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
