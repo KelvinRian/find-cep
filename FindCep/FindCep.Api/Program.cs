@@ -16,7 +16,6 @@ builder.Services.AddHttpClient<IViaCepService, ViaCepService>(client =>
     client.BaseAddress = new Uri("https://viacep.com.br/ws/");
 });
 
-builder.Services.AddScoped<IViaCepService, ViaCepService>();
 builder.Services.AddScoped<IGetAddressUseCase, GetAddressUseCase>();
 
 var app = builder.Build();
