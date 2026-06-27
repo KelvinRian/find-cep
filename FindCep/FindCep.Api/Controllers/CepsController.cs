@@ -1,4 +1,4 @@
-﻿using FindCep.Application.Dtos;
+﻿using FindCep.Application.UseCases;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FindCep.Api.Controllers
@@ -7,26 +7,17 @@ namespace FindCep.Api.Controllers
     [Route("api/[controller]")]
     public class CepsController : ControllerBase
     {
+        private IGetAddressUseCase _getAddressUseCase;
+
+        public CepsController(IGetAddressUseCase getAddressUseCase)
+        {
+            _getAddressUseCase = getAddressUseCase;
+        }
+
         [HttpGet("{cep}")]
         public async Task<IActionResult> Get([FromRoute] string cep)
         {
-            var cepDto = new CepDto
-            {
-                Cep = cep,
-                Logradouro = "Rua Exemplo",
-                Complemento = "Apto 101",
-                Unidade = "Unidade 1",
-                Bairro = "Bairro Central",
-                Localidade = "Cidade Modelo",
-                Uf = "SP",
-                Estado = "São Paulo",
-                Regiao = "Sudeste",
-                Ibge = "1234567",
-                Gia = "9876",
-                Ddd = "11",
-                Siafi = "1234"
-            };
-
+            var cepDto = await _getAddressUseCase.ExecuteAsync(cep);
             return Ok(cepDto);
         }
     }

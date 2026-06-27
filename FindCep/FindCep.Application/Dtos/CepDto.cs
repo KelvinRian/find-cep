@@ -1,19 +1,49 @@
-﻿namespace FindCep.Application.Dtos
+﻿using System.Text.Json.Serialization;
+
+namespace FindCep.Application.Dtos
 {
     public class CepDto
     {
-        public string Cep { get; set; }
-        public string Logradouro { get; set; }
-        public string Complemento { get; set; }
-        public string Unidade { get; set; }
-        public string Bairro { get; set; }
-        public string Localidade { get; set; }
-        public string Uf { get; set; }
-        public string Estado { get; set; }
-        public string Regiao { get; set; }
-        public string Ibge { get; set; }
-        public string Gia { get; set; }
-        public string Ddd { get; set; }
-        public string Siafi { get; set; }
+        [JsonPropertyName("cep")]
+        public string Cep { get; set; } = string.Empty;
+
+        [JsonPropertyName("logradouro")]
+        public string Logradouro { get; set; } = string.Empty;
+
+        [JsonPropertyName("complemento")]
+        public string Complemento { get; set; } = string.Empty;
+
+        [JsonPropertyName("unidade")]
+        public string Unidade { get; set; } = string.Empty;
+
+        [JsonPropertyName("bairro")]
+        public string Bairro { get; set; } = string.Empty;
+
+        [JsonPropertyName("localidade")]
+        public string Localidade { get; set; } = string.Empty;
+
+        [JsonPropertyName("uf")]
+        public string Uf { get; set; } = string.Empty;
+
+        [JsonPropertyName("estado")]
+        public string Estado { get; set; } = string.Empty;
+
+        [JsonPropertyName("regiao")]
+        public string Regiao { get; set; } = string.Empty;
+
+        [JsonPropertyName("ibge")]
+        public string Ibge { get; set; } = string.Empty;
+
+        [JsonPropertyName("gia")]
+        public string Gia { get; set; } = string.Empty;
+
+        [JsonPropertyName("ddd")]
+        public string Ddd { get; set; } = string.Empty;
+
+        [JsonPropertyName("siafi")]
+        public string Siafi { get; set; } = string.Empty;
+
+        [JsonPropertyName("erro")]
+        public bool? Erro { get; set; }
     }
 }

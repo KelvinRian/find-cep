@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FindCep.Application\FindCep.Application.csproj" />
+  </ItemGroup>
+
 </Project>

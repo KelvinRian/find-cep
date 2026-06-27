@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FindCep.Application\FindCep.Application.csproj" />
+    <ProjectReference Include="..\FindCep.Infrastructure\FindCep.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
