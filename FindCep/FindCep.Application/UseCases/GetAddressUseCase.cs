@@ -27,8 +27,7 @@ namespace FindCep.Application.UseCases
 
         private async Task<Result<CepDto>> FindAddress(string cep)
         {
-            var cepDto = await _viaCepService.GetAddressByCepAsync(cep);
-            return Result<CepDto>.Success(cepDto);
+            return await _viaCepService.GetAddressByCepAsync(cep);
         }
     }
 }

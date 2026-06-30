@@ -44,6 +44,6 @@ namespace FindCep.Application.Dtos
         public string Siafi { get; set; } = string.Empty;
 
         [JsonPropertyName("erro")]
-        public bool? Erro { get; set; }
+        public string? Erro { get; set; }
     }
 }

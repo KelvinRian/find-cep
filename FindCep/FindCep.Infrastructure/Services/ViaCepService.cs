@@ -1,6 +1,9 @@
-﻿using FindCep.Application.Dtos;
+﻿using FindCep.Application.Common;
+using FindCep.Application.Dtos;
+using FindCep.Application.Enums;
 using FindCep.Application.Services;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace FindCep.Infrastructure.Services
 {
@@ -13,18 +16,52 @@ namespace FindCep.Infrastructure.Services
             _httpClient = httpClient;
         }
 
-        public async Task<CepDto> GetAddressByCepAsync(string cep)
+        public async Task<Result<CepDto>> GetAddressByCepAsync(string cep)
         {
-            var response = await _httpClient.GetAsync($"{cep}/json/");
+            try
+            {
+                var response = await _httpClient.GetAsync($"{cep}/json/");
 
-            response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    return Result<CepDto>.Failure(
+                        Error.ExternalServiceUnavailable,
+                        "Não foi possível consultar o ViaCEP.");
+                }
+                
+                var content = await response.Content.ReadAsStringAsync();
 
-            var result = await response.Content.ReadFromJsonAsync<CepDto>();
+                Console.WriteLine(content);
 
-            if (result?.Erro == true)
-                return new CepDto();
+                var dto = await response.Content.ReadFromJsonAsync<CepDto>();
 
-            return result ?? new CepDto();
+                if (dto?.Erro == "true")
+                {
+                    return Result<CepDto>.Failure(
+                        Error.CepNotFound,
+                        "CEP não encontrado.");
+                }
+
+                return Result<CepDto>.Success(dto);
+            }
+            catch (HttpRequestException)
+            {
+                return Result<CepDto>.Failure(
+                    Error.ExternalServiceUnavailable,
+                    "Não foi possível conectar ao ViaCEP.");
+            }
+            catch (TaskCanceledException)
+            {
+                return Result<CepDto>.Failure(
+                    Error.Timeout,
+                    "Tempo limite da consulta ao ViaCEP excedido.");
+            }
+            catch (JsonException)
+            {
+                return Result<CepDto>.Failure(
+                    Error.InvalidResponse,
+                    "Resposta inválida recebida do ViaCEP.");
+            }
         }
     }
 }

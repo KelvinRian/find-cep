@@ -2,6 +2,10 @@
 {
     public enum Error
     {
-        InvalidCep
+        InvalidCep,
+        ExternalServiceUnavailable,
+        CepNotFound,
+        Timeout,
+        InvalidResponse
     }
 }
