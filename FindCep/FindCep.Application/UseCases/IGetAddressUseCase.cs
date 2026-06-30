@@ -5,6 +5,6 @@ namespace FindCep.Application.UseCases
 {
     public interface IGetAddressUseCase
     {
-        Task<Result<CepDto>> ExecuteAsync(string cep);
+        Task<Result<ViaCepResponseDto>> ExecuteAsync(string cep);
     }
 }

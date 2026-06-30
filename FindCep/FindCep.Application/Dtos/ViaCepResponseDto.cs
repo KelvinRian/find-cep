@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using FindCep.Application.Enums;
+using System.Text.Json.Serialization;
 
 namespace FindCep.Application.Dtos
 {
-    public class CepDto
+    public class ViaCepResponseDto
     {
         [JsonPropertyName("cep")]
         public string Cep { get; set; } = string.Empty;
@@ -45,5 +46,7 @@ namespace FindCep.Application.Dtos
 
         [JsonPropertyName("erro")]
         public string? Erro { get; set; }
+
+        public string DataOrigin { get; set; }
     }
 }

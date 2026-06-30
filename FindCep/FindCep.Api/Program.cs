@@ -49,6 +49,8 @@ builder.Services.Configure<ApiKeyAuthenticationOptions>(
 
 builder.Services.AddApiKeyAuthentication();
 
+builder.Services.AddMemoryCache();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
