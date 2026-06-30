@@ -15,17 +15,17 @@ namespace FindCep.Application.UseCases
             _viaCepService = viaCepService;
         }
 
-        public async Task<Result<CepDto>> ExecuteAsync(string cep)
+        public async Task<Result<ViaCepResponseDto>> ExecuteAsync(string cep)
         {
             var cepIsValid = CepValidator.IsValid(cep);
             
             if (cepIsValid)
                 return await FindAddress(cep);
             else
-                return Result<CepDto>.Failure(Error.InvalidCep, "O CEP deve estar no formato 00000000 ou 00000-000.");
+                return Result<ViaCepResponseDto>.Failure(Error.InvalidCep, "O CEP deve estar no formato 00000000 ou 00000-000.");
         }
 
-        private async Task<Result<CepDto>> FindAddress(string cep)
+        private async Task<Result<ViaCepResponseDto>> FindAddress(string cep)
         {
             return await _viaCepService.GetAddressByCepAsync(cep);
         }
