@@ -1,4 +1,5 @@
-﻿using FindCep.Application.UseCases;
+﻿using FindCep.Application.Enums;
+using FindCep.Application.UseCases;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,8 +20,22 @@ namespace FindCep.Api.Controllers
         [HttpGet("{cep}")]
         public async Task<IActionResult> Get([FromRoute] string cep)
         {
-            var cepDto = await _getAddressUseCase.ExecuteAsync(cep);
-            return Ok(cepDto);
+            var cepDtoResult = await _getAddressUseCase.ExecuteAsync(cep);
+
+            if (!cepDtoResult.IsSuccess)
+            {
+                return cepDtoResult.Error switch
+                {
+                    Error.InvalidCep => BadRequest(cepDtoResult.Message),
+                    Error.ExternalServiceUnavailable => StatusCode(StatusCodes.Status503ServiceUnavailable, cepDtoResult.Message),
+                    Error.CepNotFound => NotFound(cepDtoResult.Message),
+                    Error.Timeout => StatusCode(StatusCodes.Status504GatewayTimeout, cepDtoResult.Message),
+                    Error.InvalidResponse => StatusCode(StatusCodes.Status502BadGateway, cepDtoResult.Message),
+                    _ => StatusCode(StatusCodes.Status500InternalServerError)
+                };
+            }
+
+            return Ok(cepDtoResult.Data);
         }
     }
 }

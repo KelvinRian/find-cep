@@ -1,9 +1,10 @@
-﻿using FindCep.Application.Dtos;
+﻿using FindCep.Application.Common;
+using FindCep.Application.Dtos;
 
 namespace FindCep.Application.Services
 {
     public interface IViaCepService
     {
-        Task<CepDto> GetAddressByCepAsync(string cep);
+        Task<Result<CepDto>> GetAddressByCepAsync(string cep);
     }
 }

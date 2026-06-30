@@ -17,6 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FindCep.Api\FindCep.Api.csproj" />
+    <ProjectReference Include="..\FindCep.Application\FindCep.Application.csproj" />
+    <ProjectReference Include="..\FindCep.Infrastructure\FindCep.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
