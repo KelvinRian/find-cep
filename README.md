@@ -23,7 +23,7 @@ flowchart LR
     CachedData --> Response["Retorna endereço<br/>(source = Cache)"] 
 
     Cache -- Não --> ViaCep["ViaCEP API"]
-    ViaCep --> SaveCache["Armazena endereço no IMemoryCache<br/>(expiração deslizante de 5 minutos)"]
+    ViaCep --> SaveCache["Armazena endereço no IMemoryCache<br/>(Sliding Expiration de 5 minutos)"]
     SaveCache --> ResponseApi["Retorna endereço<br/>(source = ViaCep)"]
 ```
 
