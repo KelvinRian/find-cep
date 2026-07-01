@@ -19,8 +19,8 @@ flowchart LR
     UseCase --> Service["IViaCepService"]
 
     Service --> Cache{"CEP em cache?"}
-
-    Cache -- Sim --> Response["Retorna endereço<br/>(source = Cache)"]
+    Cache -- Sim --> SaveCache["Armazena no IMemoryCache"] 
+    SaveCache --> Response["Retorna endereço<br/>(source = Cache)"] 
 
     Cache -- Não --> ViaCep["ViaCEP API"]
     ViaCep --> SaveCache["Armazena no IMemoryCache"]
