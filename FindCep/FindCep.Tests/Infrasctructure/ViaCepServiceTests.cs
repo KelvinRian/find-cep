@@ -1,6 +1,6 @@
 ﻿using FindCep.Application.Dtos;
 using FindCep.Application.Enums;
-using FindCep.Infrastructure.Services;
+using FindCep.Infrastructure.ExternalServices;
 using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using Moq.Protected;
