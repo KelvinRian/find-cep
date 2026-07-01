@@ -26,7 +26,7 @@ namespace FindCep.Api.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status504GatewayTimeout)]
         [ProducesResponseType(typeof(string), StatusCodes.Status502BadGateway)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get([FromRoute] string cep)
+        public async Task<IActionResult> GetAsync([FromRoute] string cep)
         {
             var cepDtoResult = await _getCepUseCase.ExecuteAsync(cep);
 
