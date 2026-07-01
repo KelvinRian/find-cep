@@ -1,7 +1,7 @@
 using FindCep.Api.Authentication;
 using FindCep.Application.Services;
 using FindCep.Application.UseCases;
-using FindCep.Infrastructure.Services;
+using FindCep.Infrastructure.ExternalServices;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 

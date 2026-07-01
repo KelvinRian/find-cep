@@ -6,7 +6,7 @@ using Microsoft.Extensions.Caching.Memory;
 using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace FindCep.Infrastructure.Services
+namespace FindCep.Infrastructure.ExternalServices
 {
     public class ViaCepService : IViaCepService
     {
@@ -24,15 +24,13 @@ namespace FindCep.Infrastructure.Services
             var cepIsCached = _cache.TryGetValue(cep, out ViaCepResponseDto? cachedCep);
 
             if (cepIsCached)
-                return ReturnCachedCep(cep, cachedCep);
+                return ReturnCachedCep(cachedCep);
             else
                 return await TryGetFromViaCepAsync(cep);
         }
 
-        private Result<CepDto> ReturnCachedCep(string cep, ViaCepResponseDto? cachedCep)
+        private Result<CepDto> ReturnCachedCep(ViaCepResponseDto? cachedCep)
         {
-            _cache.Set(cep, cachedCep, TimeSpan.FromMinutes(5));
-
             var cepDto = new CepDto(cachedCep, Source.Cache);
             return Result<CepDto>.Success(cepDto);
         }
@@ -82,7 +80,10 @@ namespace FindCep.Infrastructure.Services
                 _cache.Set(
                     cep,
                     responseDto,
-                    TimeSpan.FromMinutes(5));
+                    new MemoryCacheEntryOptions
+                    {
+                        SlidingExpiration = TimeSpan.FromMinutes(5)
+                    });
 
                 var cepDto = new CepDto(responseDto, Source.ViaCepApi);
                 return Result<CepDto>.Success(cepDto);
