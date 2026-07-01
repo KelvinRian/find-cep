@@ -1,4 +1,5 @@
-﻿using FindCep.Application.Enums;
+﻿using FindCep.Application.Dtos;
+using FindCep.Application.Enums;
 using FindCep.Application.UseCases;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,13 @@ namespace FindCep.Api.Controllers
         }
 
         [HttpGet("{cep}")]
+        [ProducesResponseType(typeof(CepDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status503ServiceUnavailable)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status504GatewayTimeout)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status502BadGateway)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get([FromRoute] string cep)
         {
             var cepDtoResult = await _getCepUseCase.ExecuteAsync(cep);
