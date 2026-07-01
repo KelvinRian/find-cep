@@ -36,8 +36,8 @@ namespace FindCep.Api.Authentication
 
             var claims = new[]
             {
-            new Claim(ClaimTypes.Name, "ApiClient")
-        };
+                new Claim(ClaimTypes.Name, "ApiClient")
+            };
 
             var identity = new ClaimsIdentity(claims, Scheme.Name);
 

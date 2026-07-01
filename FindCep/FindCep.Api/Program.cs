@@ -3,6 +3,7 @@ using FindCep.Application.Services;
 using FindCep.Application.UseCases;
 using FindCep.Infrastructure.Services;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,11 @@ builder.Services.AddSwaggerGen(options =>
             Array.Empty<string>()
         }
     });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+    options.IncludeXmlComments(xmlPath);
 });
 
 builder.Services.AddHttpClient<IViaCepService, ViaCepService>(client =>
@@ -42,7 +48,7 @@ builder.Services.AddHttpClient<IViaCepService, ViaCepService>(client =>
     client.BaseAddress = new Uri("https://viacep.com.br/ws/");
 });
 
-builder.Services.AddScoped<IGetAddressUseCase, GetAddressUseCase>();
+builder.Services.AddScoped<IGetCepUseCase, GetCepUseCase>();
 
 builder.Services.Configure<ApiKeyAuthenticationOptions>(
     builder.Configuration.GetSection(ApiKeyAuthenticationOptions.SectionName));

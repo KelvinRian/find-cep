@@ -1,15 +1,15 @@
 ﻿using FindCep.Application.Common;
 using FindCep.Application.Dtos;
 
-namespace FindCep.Application.Services
+namespace FindCep.Application.UseCases
 {
-    public interface IViaCepService
+    public interface IGetCepUseCase
     {
         /// <summary>
-        /// Requests address information from the ViaCEP API based on the provided CEP and caches the result for five minutes.
+        /// Executes the use case to retrieve address information based on the provided CEP (postal code).
         /// </summary>
         /// <param name="cep">CEP to be searched</param>
         /// <returns>Returns a Result object with cep data and data origin</returns>
-        Task<Result<CepDto>> GetAsync(string cep);
+        Task<Result<CepDto>> ExecuteAsync(string cep);
     }
 }

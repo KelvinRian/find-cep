@@ -1,4 +1,5 @@
-﻿using FindCep.Application.Enums;
+﻿using FindCep.Application.Dtos;
+using FindCep.Application.Enums;
 using FindCep.Application.UseCases;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,17 +11,30 @@ namespace FindCep.Api.Controllers
     [Route("api/[controller]")]
     public class CepsController : ControllerBase
     {
-        private IGetAddressUseCase _getAddressUseCase;
+        private IGetCepUseCase _getCepUseCase;
 
-        public CepsController(IGetAddressUseCase getAddressUseCase)
+        public CepsController(IGetCepUseCase getAddressUseCase)
         {
-            _getAddressUseCase = getAddressUseCase;
+            _getCepUseCase = getAddressUseCase;
         }
 
+        /// <summary>
+        /// Retrieves address information based on the provided CEP.
+        /// </summary>
+        /// <param name="cep">CEP to be searched</param>
+        /// <returns>Returns address data for the provided cep.</returns>
         [HttpGet("{cep}")]
-        public async Task<IActionResult> Get([FromRoute] string cep)
+        [ProducesResponseType(typeof(CepDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status503ServiceUnavailable)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status504GatewayTimeout)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status502BadGateway)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAsync([FromRoute] string cep)
         {
-            var cepDtoResult = await _getAddressUseCase.ExecuteAsync(cep);
+            var cepDtoResult = await _getCepUseCase.ExecuteAsync(cep);
 
             if (!cepDtoResult.IsSuccess)
             {

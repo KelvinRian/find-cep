@@ -1,5 +1,4 @@
-﻿using FindCep.Application.Enums;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace FindCep.Application.Dtos
 {
@@ -46,7 +45,5 @@ namespace FindCep.Application.Dtos
 
         [JsonPropertyName("erro")]
         public string? Erro { get; set; }
-
-        public string DataOrigin { get; set; }
     }
 }
