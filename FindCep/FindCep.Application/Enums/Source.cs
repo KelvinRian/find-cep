@@ -1,6 +1,6 @@
 ﻿namespace FindCep.Application.Enums
 {
-    public enum DataOrigin
+    public enum Source
     {
         ViaCepApi,
         Cache

@@ -5,12 +5,12 @@ namespace FindCep.Application.Dtos
     public class CepDto
     {
         public ViaCepResponseDto Data { get; set; }
-        public string DataOrigin { get; set; }
+        public string Source { get; set; }
 
-        public CepDto(ViaCepResponseDto data, DataOrigin origin)
+        public CepDto(ViaCepResponseDto data, Source source)
         {
             Data = data;
-            DataOrigin = origin.ToString();
+            Source = source.ToString();
         }
     }
 }
