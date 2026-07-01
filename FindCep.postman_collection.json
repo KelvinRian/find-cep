@@ -1,0 +1,37 @@
+{
+  "info": {
+    "name": "FindCep",
+    "_postman_id": "b6d5c6f8-2c7f-4b3a-8d7a-1f4b9f8c2a11",
+    "description": "Postman collection for FindCep API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GetAsync",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Api-Key",
+            "value": "",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://localhost:7132/api/ceps/01001000",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7132",
+          "path": [
+            "api",
+            "ceps",
+            "01001000"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
