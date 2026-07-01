@@ -26,7 +26,7 @@ namespace FindCep.Infrastructure.Services
             if (cepIsCached)
                 return ReturnCachedCep(cep, cachedCep);
             else
-                return await TryGetFromViaCep(cep);
+                return await TryGetFromViaCepAsync(cep);
         }
 
         private Result<CepDto> ReturnCachedCep(string cep, ViaCepResponseDto? cachedCep)
@@ -37,11 +37,11 @@ namespace FindCep.Infrastructure.Services
             return Result<CepDto>.Success(cepDto);
         }
 
-        private async Task<Result<CepDto>> TryGetFromViaCep(string cep)
+        private async Task<Result<CepDto>> TryGetFromViaCepAsync(string cep)
         {
             try
             {
-                return await GetFromViaCep(cep);
+                return await GetFromViaCepAsync(cep);
             }
             catch (HttpRequestException)
             {
@@ -63,7 +63,7 @@ namespace FindCep.Infrastructure.Services
             }
         }
 
-        private async Task<Result<CepDto>> GetFromViaCep(string cep)
+        private async Task<Result<CepDto>> GetFromViaCepAsync(string cep)
         {
             var response = await _httpClient.GetAsync($"{cep}/json/");
 

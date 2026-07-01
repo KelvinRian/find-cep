@@ -5,7 +5,6 @@ using FindCep.Application.Enums;
 using FindCep.Application.UseCases;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Xunit.Sdk;
 
 namespace FindCep.Tests.Api.Controllers
 {
