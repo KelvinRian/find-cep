@@ -18,9 +18,15 @@ namespace FindCep.Api.Controllers
             _getCepUseCase = getAddressUseCase;
         }
 
+        /// <summary>
+        /// Retrieves address information based on the provided CEP.
+        /// </summary>
+        /// <param name="cep">CEP to be searched</param>
+        /// <returns>Returns address data for the provided cep.</returns>
         [HttpGet("{cep}")]
         [ProducesResponseType(typeof(CepDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status503ServiceUnavailable)]
         [ProducesResponseType(typeof(string), StatusCodes.Status504GatewayTimeout)]
