@@ -24,7 +24,7 @@ namespace FindCep.Tests.Application.UseCases
             // Arrange
             var cep = "01001000";
             var viaCepResponse = new ViaCepResponseDto { Cep = cep };
-            var cepDto = new CepDto(viaCepResponse, DataOrigin.ViaCepApi);
+            var cepDto = new CepDto(viaCepResponse, Source.ViaCepApi);
             
             var expectedResult = Result<CepDto>.Success(cepDto);
             _viaCepService

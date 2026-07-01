@@ -65,7 +65,7 @@ namespace FindCep.Tests.Infrasctructure
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Data);
             Assert.Equal(cep, result.Data.Data.Cep);
-            Assert.Equal(DataOrigin.ViaCepApi.ToString(), result.Data.DataOrigin);
+            Assert.Equal(Source.ViaCepApi.ToString(), result.Data.Source);
 
             bool isCached = memoryCache.TryGetValue(cep, out var cachedValue);
             Assert.True(isCached);
@@ -127,7 +127,7 @@ namespace FindCep.Tests.Infrasctructure
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Data);
             Assert.Equal(cep, result.Data.Data.Cep);
-            Assert.Equal(DataOrigin.Cache.ToString(), result.Data.DataOrigin);
+            Assert.Equal(Source.Cache.ToString(), result.Data.Source);
 
             bool isCached = memoryCache.TryGetValue(cep, out var cachedValue);
             Assert.True(isCached);

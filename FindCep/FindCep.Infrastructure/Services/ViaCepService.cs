@@ -33,7 +33,7 @@ namespace FindCep.Infrastructure.Services
         {
             _cache.Set(cep, cachedCep, TimeSpan.FromMinutes(5));
 
-            var cepDto = new CepDto(cachedCep, DataOrigin.Cache);
+            var cepDto = new CepDto(cachedCep, Source.Cache);
             return Result<CepDto>.Success(cepDto);
         }
 
@@ -84,7 +84,7 @@ namespace FindCep.Infrastructure.Services
                     responseDto,
                     TimeSpan.FromMinutes(5));
 
-                var cepDto = new CepDto(responseDto, DataOrigin.ViaCepApi);
+                var cepDto = new CepDto(responseDto, Source.ViaCepApi);
                 return Result<CepDto>.Success(cepDto);
             }
 

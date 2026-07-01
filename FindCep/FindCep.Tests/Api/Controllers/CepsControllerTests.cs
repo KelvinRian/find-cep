@@ -25,7 +25,7 @@ namespace FindCep.Tests.Api.Controllers
             // Arrange
             var cep = "01001000";
             var viaCepResponse = new ViaCepResponseDto { Cep = cep };
-            var cepDto = new CepDto(viaCepResponse, DataOrigin.ViaCepApi);
+            var cepDto = new CepDto(viaCepResponse, Source.ViaCepApi);
             var resultDto = Result<CepDto>.Success(cepDto);
 
             _getCepUseCaseMock

@@ -10,14 +10,14 @@ namespace FindCep.Tests.Application.Dtos
         {
             // Arrange
             var data = new ViaCepResponseDto();
-            var dataOrigin = DataOrigin.ViaCepApi;
+            var source = Source.ViaCepApi;
 
             // Act
-            var cepDto = new CepDto(data, dataOrigin);
+            var cepDto = new CepDto(data, source);
 
             // Assert
             Assert.Equal(data, cepDto.Data);
-            Assert.Equal(dataOrigin.ToString(), cepDto.DataOrigin);
+            Assert.Equal(source.ToString(), cepDto.Source);
         }
     }
 }
