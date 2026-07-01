@@ -126,6 +126,12 @@ GET /api/ceps/{cep}
 curl --location "https://localhost:5001/api/address/89135000" --header "X-Api-Key: your-api-key"
 ```
 
+## Postman
+
+A collection Postman está disponível na raíz do projeto.
+
+Antes de executar as requisições, informe o valor do header `X-Api-Key`.
+
 ## Validações
 
 -   CEP obrigatório
