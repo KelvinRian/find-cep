@@ -42,7 +42,7 @@ builder.Services.AddHttpClient<IViaCepService, ViaCepService>(client =>
     client.BaseAddress = new Uri("https://viacep.com.br/ws/");
 });
 
-builder.Services.AddScoped<IGetAddressUseCase, GetAddressUseCase>();
+builder.Services.AddScoped<IGetCepUseCase, GetCepUseCase>();
 
 builder.Services.Configure<ApiKeyAuthenticationOptions>(
     builder.Configuration.GetSection(ApiKeyAuthenticationOptions.SectionName));

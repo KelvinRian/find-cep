@@ -5,6 +5,6 @@ namespace FindCep.Application.Services
 {
     public interface IViaCepService
     {
-        Task<Result<CepDto>> GetAddressByCepAsync(string cep);
+        Task<Result<CepDto>> GetAsync(string cep);
     }
 }

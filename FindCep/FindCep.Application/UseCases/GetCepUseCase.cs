@@ -6,11 +6,11 @@ using FindCep.Application.Validators;
 
 namespace FindCep.Application.UseCases
 {
-    public class GetAddressUseCase : IGetAddressUseCase
+    public class GetCepUseCase : IGetCepUseCase
     {
         private IViaCepService _viaCepService;
 
-        public GetAddressUseCase(IViaCepService viaCepService)
+        public GetCepUseCase(IViaCepService viaCepService)
         {
             _viaCepService = viaCepService;
         }
@@ -20,7 +20,7 @@ namespace FindCep.Application.UseCases
             var cepIsValid = CepValidator.IsValid(cep);
             
             if (cepIsValid)
-                return await _viaCepService.GetAddressByCepAsync(cep);
+                return await _viaCepService.GetAsync(cep);
             else
                 return Result<CepDto>.Failure(Error.InvalidCep, "O CEP deve estar no formato 00000000 ou 00000-000.");
         }

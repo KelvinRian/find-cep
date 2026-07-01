@@ -10,17 +10,17 @@ namespace FindCep.Api.Controllers
     [Route("api/[controller]")]
     public class CepsController : ControllerBase
     {
-        private IGetAddressUseCase _getAddressUseCase;
+        private IGetCepUseCase _getCepUseCase;
 
-        public CepsController(IGetAddressUseCase getAddressUseCase)
+        public CepsController(IGetCepUseCase getAddressUseCase)
         {
-            _getAddressUseCase = getAddressUseCase;
+            _getCepUseCase = getAddressUseCase;
         }
 
         [HttpGet("{cep}")]
         public async Task<IActionResult> Get([FromRoute] string cep)
         {
-            var cepDtoResult = await _getAddressUseCase.ExecuteAsync(cep);
+            var cepDtoResult = await _getCepUseCase.ExecuteAsync(cep);
 
             if (!cepDtoResult.IsSuccess)
             {

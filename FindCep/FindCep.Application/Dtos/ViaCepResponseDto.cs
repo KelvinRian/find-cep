@@ -1,5 +1,4 @@
-﻿using FindCep.Application.Enums;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace FindCep.Application.Dtos
 {
