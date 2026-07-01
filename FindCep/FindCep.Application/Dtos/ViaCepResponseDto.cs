@@ -46,7 +46,5 @@ namespace FindCep.Application.Dtos
 
         [JsonPropertyName("erro")]
         public string? Erro { get; set; }
-
-        public string DataOrigin { get; set; }
     }
 }
