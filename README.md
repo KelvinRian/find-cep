@@ -94,8 +94,8 @@ dotnet run --project FindCep.Api
 
 ## Configuração da API Key
 
+Em find-cep/FindCep/FindCep.Api
 ``` bash
-cd FindCep.Api
 dotnet user-secrets init
 dotnet user-secrets set "Authentication:ApiKey" "your-api-key"
 ```
@@ -120,12 +120,6 @@ Disponível em:
 GET /api/ceps/{cep}
 ```
 
-## Exemplo
-
-``` bash
-curl --location "https://localhost:5001/api/address/89135000" --header "X-Api-Key: your-api-key"
-```
-
 ## Postman
 
 A collection Postman está disponível na raíz do projeto.
@@ -146,6 +140,7 @@ informa se os dados vieram do ViaCEP ou do cache.
 
 ## Testes
 
+Em find-cep/findcep
 ``` bash
 dotnet test
 ```
