@@ -18,12 +18,12 @@
           }
         ],
         "url": {
-          "raw": "https://localhost:7132/api/ceps/01001000",
-          "protocol": "https",
+          "raw": "http://localhost:5293/api/ceps/01001000",
+          "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "7132",
+          "port": "5293",
           "path": [
             "api",
             "ceps",
